@@ -90,6 +90,54 @@ Product.create!(
 	is_active: 'true',
 	image: open('./app/assets/images/cake-image-8.jpg')
 	)
+Product.create!(
+	category_id: '1',
+	name: 'ブルーベリータルト',
+	introduction: '国産ブルーベリーをふんだんに使用した贅沢なケーキ',
+	price: '4000',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-4.jpg')
+	)
+Product.create!(
+	category_id: '1',
+	name: 'シュークリーム',
+	introduction: '生クリームとカスタードクリームをたっぷり詰めました',
+	price: '400',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-5.jpg')
+	)
+Product.create!(
+	category_id: '1',
+	name: 'ブルーベリータルト',
+	introduction: '国産ブルーベリーをふんだんに使用した贅沢なケーキ',
+	price: '4000',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-4.jpg')
+	)
+Product.create!(
+	category_id: '1',
+	name: 'シュークリーム',
+	introduction: '生クリームとカスタードクリームをたっぷり詰めました',
+	price: '400',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-5.jpg')
+	)
+Product.create!(
+	category_id: '1',
+	name: 'ブルーベリータルト',
+	introduction: '国産ブルーベリーをふんだんに使用した贅沢なケーキ',
+	price: '4000',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-4.jpg')
+	)
+Product.create!(
+	category_id: '1',
+	name: 'シュークリーム',
+	introduction: '生クリームとカスタードクリームをたっぷり詰めました',
+	price: '400',
+	is_active: 'true',
+	image: open('./app/assets/images/cake-image-5.jpg')
+	)
 
 
 Customer.create!(

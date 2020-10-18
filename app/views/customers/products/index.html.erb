@@ -7,16 +7,18 @@
 		<div class ="col-md-9">
 
 			<% if params[:category_id] %>
-				<div class ="row ">
+				<div class ="row center-block">
 					<div class ="col-md-3">
 						<h2><%= @category.category_name %></h2>
 					</div>
 					<div class="col-md-2">
-						<h4 class ="align">(全<%= @products.count %>件)</h4>
+						<h4 class ="align">(全<%= @products_count %>件)</h4>
 					</div>
 				</div>
 			<% else %>
-				<h2>商品一覧</h2>
+				<div class="headline">
+					<h2>All products</h2>
+				</div>
 				<h4>全<%= @products.count %>件</h4>
 			<% end %>
 
@@ -24,6 +26,11 @@
 				<% @products.each do |product| %>
 					<%= render 'table', product: product %>
 				<% end %>
+			</div>
+			<div class="row">
+				<div class="offset-md-3">
+					<%= paginate @products %>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -6,12 +6,15 @@ class Customers::ProductsController < ApplicationController
 	end
 
 	def index
-		@products = Product.all
-		@categories = Category.all
+		@categories = Category.only_active
 		if params[:category_id]
 			@category = Category.find(params[:category_id])
-			@products = @products.where(category_id: params[:category_id])
+			all_products = @category.products
+		else
+			all_products = Product.all
 		end
+		@products_count = all_products.count
+		@products = all_products.page(params[:page]).per(4)
 	end
 
 	def show
@@ -23,3 +26,5 @@ class Customers::ProductsController < ApplicationController
 	def about
 	end
 end
+
+

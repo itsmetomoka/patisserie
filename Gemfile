@@ -68,3 +68,4 @@ gem 'rails-i18n'
 gem 'devise'
 gem 'pry-byebug'
 gem "paranoia", "~> 2.2"
+gem 'kaminari', '~> 1.2.1'

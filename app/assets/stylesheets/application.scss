@@ -18,6 +18,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Vollkorn',"游ゴシック", serif;
+
 }
 body {
   background-color: #FFFFEE;
@@ -74,3 +76,19 @@ footer {
 .content {
   min-height: 650px;
 }
+.pagination span{
+    border-radius: 50%;
+}
+.pagination a{
+    border-radius: 50%;
+    background: #f3f3f3;
+}
+.pagination li {
+    margin: 3.5px 7px;
+}
+.pagination>.active>.page-link {
+  background: #73716d;
+  border-radius: 50%;
+}
+
+

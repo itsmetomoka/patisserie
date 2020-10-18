@@ -6,13 +6,11 @@
 			</div>
 		</th></tr>
 		<% categories.each do |category| %>
-			<% if category.is_active == true %>
-				<tr>
-					<td>
-						<%=link_to category.category_name, products_path(category_id: category.id) %>
-					</td>
-				</tr>
-			<% end %>
+			<tr>
+				<td>
+					<%=link_to category.category_name, products_path(category_id: category.id) %>
+				</td>
+			</tr>
 		<% end %>
 	</table>
 </div>

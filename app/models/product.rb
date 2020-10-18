@@ -9,6 +9,8 @@ class Product < ApplicationRecord
   validates :price, presence: true
   validates :image, presence: true
 
+  scope :where_category_active, -> { joins(:category).where(categories: { is_active: true }) }
+
 # 税込価格の計算小数点以下切り捨て
   def include_tax
 	(price * 1.08).floor
