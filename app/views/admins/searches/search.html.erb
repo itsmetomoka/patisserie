@@ -1,0 +1,83 @@
+<div class='container'>
+  <div class='row mt-5'>
+    <h3>会員一覧</h3>
+  </div>
+  <div class='row mt-3'>
+    <% unless @customer.exists? %>
+    <div class ="col-md-4 offset-md-4">
+      <h4>該当する会員はいません</h4>
+    <% else %>
+    	<table class="text-center table table-hover table-inverse">
+    	  <thead>
+    	  	<tr>
+    	  	  <th class="text-left">会員ID</th>
+    	  	  <th class="text-left">氏名</th>
+    	  	  <th>メールアドレス</th>
+    	  	  <th>ステータス</th>
+    	  	</tr>
+    	  </thead>
+    	  <tbody>
+    	  	<% @customer.each do |customer| %>
+    	  	  <tr>
+    	  	  	<td class="text-left">
+    	  	  	  <%= customer.id %>
+    	  	  	</td>
+    	  	  	<td class="text-left">
+    	  	  	  <%= link_to admins_customer_path(customer) do %>
+                  <%= customer.full_name %>
+                <% end %>
+    	  	  	</td>
+              <td>
+                <%= customer.email %>
+              </td>
+              <td>
+                <% if customer.is_active == true %>
+                  <p>有効</p>
+                <% else %>
+                  <p>無効</p>
+                <% end %>
+              </td>
+    	  	  </tr>
+    	  	<% end %>
+    	  </tbody>
+    	</table>
+    <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row mt-5">
+    <h3>商品一覧</h3>
+  </div>
+  <div class="row">
+    <% unless @product.exists? %>
+      <div class ="col-md-4 offset-md-4">
+        <h4>該当する会員はいません</h4>
+      </div>
+    <% else %>
+  </div>
+      <table class="table">
+        <thead>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </thead>
+        <% @product.each do |item| %>
+          <tbody>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admins_product_path(item) %></td>
+            <td><%= item.price %></td>
+            <td><%= item.category.category_name %></td>
+            <td>
+              <% if item.is_active == true %>
+                <%= "販売中" %><% else %><%= "売り切れ" %>
+              <% end %>
+            </td>
+          </tbody>
+        <% end %>
+      </table>
+    <% end %>
+  </div>
+</div>

@@ -4,12 +4,84 @@
     <title>Patisserie</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <script src="https://kit.fontawesome.com/188b0a3462.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <% if customer_signed_in? %>
+        <span class="customer-name">ようこそ<%= current_customer.last_name+current_customer.first_name %>さん</span>
+      <% end %>
+      <div class='header-main'>
+        <%= link_to root_path do %>
+          <span class="header-name">NAGANOCAKE</span>
+        <% end %>
+
+        <nav>
+          <ul class="nav-list">
+            <% if customer_signed_in? %>
+            <!-- カスタマーログイン後 -->
+              <li class="nav-item">
+                <%= link_to "マイページ", customers_my_page_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "商品一覧", products_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "カート", product_cart_products_path(:roduct_id), class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_customer_session_path, class: "nav-link", :method=>:delete %>
+              </li>
+            <% elsif admin_signed_in? %>
+            <!-- 管理者のログイン後 -->
+              <li class="nav-item">
+                <%= link_to "商品一覧", admins_products_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "会員一覧", admins_customers_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "注文履歴一覧", admins_orders_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ジャンル一覧", admins_categories_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログアウト", destroy_admin_session_path, class: "nav-link", :method=>:delete %>
+              </li>
+            <% else %>
+            <!-- ログイン前 -->
+              <li class="nav-item">
+                <%= link_to "About", customers_about_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "商品一覧", products_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="container content">
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="container-fluid">
+        <p class ="footer-text">
+          Copyright © 2020 nagano-cake Inc. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
   </body>
+  
 </html>

@@ -1,2 +1,21 @@
-<h1>Admins::Customers#top</h1>
-<p>Find me in app/views/admins/customers/top.html.erb</p>
+<div class ="container">
+  <%= render 'admins/searches/box' %>
+  <div class="row p-5">
+    <div class="col-md-4 text-center">
+      <h4 class="col-12">管理者画面</h4>
+    </div>
+  </div>
+
+  <div class="row p-5">
+
+    <div class="col-md-4 h2">
+  	 <p class="order-count">本日の注文件数</p>
+    </div>
+
+    <div class="col-md-3 lead">
+  	  <span class="h2">
+  	    <%= @orders.count %> 件
+  	  </span>
+    </div>
+  </div>
+</div>

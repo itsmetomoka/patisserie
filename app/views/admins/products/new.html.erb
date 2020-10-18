@@ -1,2 +1,30 @@
-<h1>Admins::Products#new</h1>
-<p>Find me in app/views/admins/products/new.html.erb</p>
+<!-- タイトル -->
+	<div class="container">
+		<%= render 'admins/searches/box' %>
+		<h2 class="m-4">商品新規登録</h2>
+		<!-- バリテーション -->
+		<% if @product.errors.any? %>
+			<div id="error_explanation">
+			  <h2><%= @product.errors.count %> 件のエラーがあります</h2>
+			  <ul>
+			    <% @product.errors.full_messages.each do |message| %>
+			      <li><%= message %></li>
+			    <% end %>
+			  </ul>
+			</div>
+		<% end %>
+	</div>
+
+
+<%= form_with model:@product, url:admins_products_path, method: :post, local: true do |item| %>
+
+	<!-- 入力form -->
+	<%= render 'form', item: item %>
+
+	<!-- 登録ボタン -->
+	<div class="row">
+		<div class="col-10 text-right">
+			<%= item.submit "新規登録", class: "btn btn-primary"  %>
+		</div>
+	</div>
+<% end %>

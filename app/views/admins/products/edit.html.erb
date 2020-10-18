@@ -1,2 +1,20 @@
-<h1>Admins::Products#edit</h1>
-<p>Find me in app/views/admins/products/edit.html.erb</p>
+<!-- タイトル -->
+<%= render 'admins/searches/box' %>
+<div class="row">
+	<div class="container">
+		<h2 class="m-4">商品編集</h2>
+	</div>
+</div>
+
+<%= form_with model:@product, url:admins_product_path(@product), method: :patch, local: true do |item| %>
+
+	<!-- 入力form -->
+	<%= render 'form', item: item %>
+
+	<!-- 登録ボタン -->
+	<div class="row">
+		<div class="col-10 text-right">
+			<%= item.submit "変更を保存", class: "btn btn-primary"  %>
+		</div>
+	</div>
+<% end %>

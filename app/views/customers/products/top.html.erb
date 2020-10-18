@@ -1,1 +1,39 @@
-<h1> HERE IS TOP PAGE</h1>
+<div class ="container">
+	<%= render 'customers/searches/box' %>
+	<div class = "row mt-5">
+		<div class="col-md-2 col-sm-2">
+			<%= render 'category', categories: @categories %>
+		</div>
+		<div class ="col-md-10">
+			<div class ="main-visual">
+				<div class ="main-visual-text">
+					<div class="main-visual-centence">
+						<div class="main-visual-headline">
+							<h1>ようこそNAGANO CAKEへ</h1>
+						</div>
+						<div class="main-centense">
+							<h4>
+								このサイトは、ケーキ販売のECサイトになります。<br>
+								会員でない方も商品の閲覧はできますが、<br>
+								購入には会員登録が必要になります。<br>
+							</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+				<div class="row mt-5">
+					<h2>おすすめ商品</h2>
+				</div>
+			<div class="row mt-2">
+				<% @products.last(4).each do |product| %>
+					<%= render 'table', product: product %>
+				<% end %>
+			</div>
+			<div class="row mt-3 mb-5">
+				<div class ="col text-right">
+					<%= link_to "もっと見る＞", products_path %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

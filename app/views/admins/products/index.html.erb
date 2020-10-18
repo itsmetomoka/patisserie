@@ -1,2 +1,41 @@
-<h1>Admins::Products#index</h1>
-<p>Find me in app/views/admins/products/index.html.erb</p>
+<div class="container">
+	<%= render 'admins/searches/box' %>
+
+<!-- タイトル -->
+	<div class ="row mt-5">
+		<div class="col-md-11">
+			<h2>商品一覧</h2>
+		</div>
+		<div class="col-md-1">
+			<div class="text-right">
+				<%= link_to "+", new_admins_product_path, class:"btn btn-primary" %>
+			</div>
+		</div>
+	</div>
+
+	<!-- 一覧 -->
+	<div class="row mt-3 mb-5">
+		<table class="table">
+			<thead>
+				<th>商品ID</th>
+				<th>商品名</th>
+				<th>税抜価格</th>
+				<th>ジャンル</th>
+				<th>ステータス</th>
+			</thead>
+			<% @products.each do |item| %>
+				<tbody>
+					<td><%= item.id %></td>
+					<td><%= link_to item.name, admins_product_path(item) %></td>
+					<td><%= item.price %></td>
+					<td><%= item.category.category_name %></td>
+					<td>
+						<% if item.is_active == true %>
+							<%= "販売中" %><% else %><%= "売り切れ" %>
+						<% end %>
+					</td>
+				</tbody>
+			<% end %>
+		</table>
+	</div>
+</div>

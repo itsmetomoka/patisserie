@@ -1,2 +1,31 @@
-<h1>Admins::Orders#index</h1>
-<p>Find me in app/views/admins/orders/index.html.erb</p>
+<div class='container'>
+  <%= render 'admins/searches/box' %>
+  <div class="row ml-1 mt-5">
+      <h2>注文履歴一覧</h2>
+  </div>
+        <!-- 一覧 -->
+  <div class="row mt-3">
+    <table class="table">
+      <thead>
+        <th>購入日時</th>
+        <th>購入者</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </thead>
+      <% @orders.each do |history| %>
+      <tbody>
+        <td><%= link_to history.created_at, admins_order_path(history)%></td>
+        <td><%= history.customer.full_name %></td>
+        <td>
+          <% @sum = 0 %>
+          <% history.order_items.each do |count|%>
+            <% @sum += count.quantity %>
+          <% end %>
+          <%= @sum %>
+        </td>
+        <td><%= history.order_status %></td>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class ="border rounded">
+	<table class="table table-borderless">
+		<tr><th>
+			<div class ="category-border">
+				<p>ジャンル検索</p>
+			</div>
+		</th></tr>
+		<% categories.each do |category| %>
+			<tr>
+				<td>
+					<%=link_to category.category_name, products_path(category_id: category.id) %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>

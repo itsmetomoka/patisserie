@@ -1,0 +1,30 @@
+ja:
+  activerecord:
+    models:
+      customer: カスタマー
+    attributes:
+      customer:
+        last_name: 姓
+        first_name: 名
+        last_name_kana: セイ
+        first_name_kana: メイ
+        password: パスワード
+        post_code: 郵便番号
+        password_confirmation: 確認用パスワード
+        email: メールアドレス
+        phone_number: 電話番号
+      product:
+        name: 商品名
+        category: カテゴリー
+        introduction: 説明文
+        price: 税抜価格
+        image: 画像
+      category:
+        category: カテゴリー
+  views:
+    pagination:
+      first: <i class="fas fa-angle-double-left"></i>
+      last: <i class="fas fa-angle-double-right"></i>
+      previous: <i class="fas fa-angle-left"></i>
+      next: <i class="fas fa-angle-right"></i>
+      truncate: "..."

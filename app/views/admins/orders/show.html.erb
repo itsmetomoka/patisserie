@@ -1,2 +1,80 @@
-<h1>Admins::Orders#show</h1>
-<p>Find me in app/views/admins/orders/show.html.erb</p>
+<div class='container'>
+  <%= render 'admins/searches/box' %>
+　<!-- タイトル -->
+  <h3 class='row pt-3'>会員一覧</h3>
+　<!-- 購入者 -->
+  <div class='row pt-3'>
+    <span class='col-2'>購入者</span>
+    <div class='col-2'><%= @order.customer.full_name %></div>
+  </div>
+  <!-- 配送先 -->
+  <div class='row pt-3'>
+    <span class='col-2'>配送先</span>
+    <div class='col-10'><%= @order.shipping_address %></div>
+  </div>
+  <div class='row'>
+    <div class="col-2"></div>
+  	<div class="col-2"><%= @order.name %></div>
+  </div>
+  <!-- 支払い方法 -->
+  <div class='row pt-3'>
+    <span class='col-2'>支払方法</span>
+    <div class='col-2'><%= @order.payment_method %></div>
+  </div>
+  <!-- 注文ステータス -->
+  <%= form_for(@order, url: admins_order_path, method: :patch) do |f| %>
+    <div class='row pt-3'>
+	  <span class='col-2'>注文ステータス</span>
+	  <div class='col-4'>
+	    <%= f.select :order_status, Order.order_statuses.keys,{}%>
+	    <%= f.submit '更新', class: "btn btn-primary" %>
+	  </div>
+	</div>
+  <% end %>
+  <!-- 注文情報 -->
+  <div class='row pt-5'>
+  	<table class='col-8 table table-hover table-bordered table-inverse'>
+  	  <thead>
+  	  	<tr>
+  	  	  <th>商品名</th>
+  	  	  <th>単価（税込）</th>
+  	  	  <th>数量</th>
+  	  	  <th>小計</th>
+  	  	  <th colspan='2'>制作ステータス</th>
+  	  	</tr>
+  	  </thead>
+  	  <tbody>
+        <% @sum = 0 %>
+  	  	<% @order_items.each do |order_item| %>
+  	  	<tr>
+  	  	  <td><%= order_item.product.name %></td>
+  	  	  <td><%= order_item.product.include_tax %>円</td>
+  	  	  <td><%= order_item.quantity %></td>
+          <% @sum += order_item.product.include_tax * order_item.quantity  %>
+  	  	  <td><%= order_item.product.include_tax * order_item.quantity  %>円</td>
+  	  	  <%= form_for(order_item, url: admins_order_item_path(order_item), method: :patch) do |f| %>
+  	  	    <td><%= f.select :making_status, OrderItem.making_statuses.keys, :selected => order_item.making_status %></td>
+  	  	    <td><%= f.submit '更新', class: "btn btn-warning" %></td>
+  	  	  <% end %>
+  	  	</tr>
+  	  	<% end %>
+  	  </tbody>
+  	</table>
+  	<!-- 金額 -->
+    <div class="col-1"></div>
+  	<table class='col-3 text-rigth table table-hover table-bordered table-condensed'>
+  	  <tr>
+  	    <th>商品合計</th>
+  	    <td><%= @sum %>円</td>
+  	  </tr>
+  	  <tr>
+  	  	<th>送料</th>
+  	  	<td><%= @order.delivery_fee %>円</td>
+  	  </tr>
+  	  <tr>
+  	  	<th>請求金額合計</th>
+  	  	<td><%= @sum + @order.delivery_fee %>円</td>
+  	  </tr>
+  	</table>
+  </div>
+</div>

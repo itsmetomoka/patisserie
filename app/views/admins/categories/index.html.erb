@@ -1,2 +1,54 @@
-<h1>Admins::Categories#index</h1>
-<p>Find me in app/views/admins/categories/index.html.erb</p>
+<div class="container">
+  <%= render 'admins/searches/box' %>
+  <div class="row pt-5">
+    <div class="col">
+      <h3>ジャンル一覧・追加</h3>
+    </div>
+  </div>
+  <div class="row pt-5">
+  	<div class="col-6 text-center">
+  	  <%= form_with model: [:admins,@category], local: true do |f| %>
+  	    <%= f.label :category_name, 'ジャンル' %>
+  	    <%= f.text_field :category_name %>
+  	    <%= f.radio_button :is_active, true %>
+  	    <%= f.label :is_active, "有効", {value: :true, style: "display: inline-block;"} %>
+  	    <%= f.radio_button :is_active, false %>
+  	    <%= f.label :is_active, "無効", {value: :false, style: "display: inline-block;"} %>
+  	    <%= f.submit "追加", class: "btn btn-info" %>
+  	  <% end %>
+  	</div>
+  </div>
+  <div class="row pt-5">
+  	<div class="col-md-8">
+  	  <table class="table table-hover table-borderless col-12 ">
+  	  	<thead>
+  	  	  <tr>
+  	  	  	<th>ジャンル</th>
+  	  	  	<th>状態</th>
+  	  	  	<th colspan="2"></th>
+  	  	  </tr>
+  	  	</thead>
+  	  	<tbody>
+  	  	  <% @categories.each do |category| %>
+  	  	    <tr>
+  	  	      <td class="text-left">
+  	  	      	<%= category.category_name %>
+  	  	      </td>
+  	  	      <% if category.is_active == true %>
+  	  	        <td>有効</td>
+  	  	      <% elsif category.is_active == false %>
+  	  	        <td>無効</td>
+  	  	      <% end %>
+  	  	      <td>
+  	  	      	<%= link_to "編集する", edit_admins_category_path(category), class: "glyphicon glyphicon-pencil btn btn-success" %>
+  	  	      </td>
+  	  	      <td>
+  	  	      	<%= link_to "削除", admins_category_path(category), method: :delete, class: "glyphicon glyphicon-pencil btn btn-danger" %>
+  	  	      </td>
+  	  	    </tr>
+  	  	  <% end %>
+  	  	</tbody>
+  	  </table>
+  	</div>
+  </div>
+</div>

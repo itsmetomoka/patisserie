@@ -1,2 +1,33 @@
-<h1>Admins::Products#show</h1>
-<p>Find me in app/views/admins/products/show.html.erb</p>
+<div class="container">
+<%= render 'admins/searches/box' %>
+	<!-- タイトル -->
+	<div class="row">
+		<h2 class="col-4 m-4 text-center">商品詳細</h2>
+	</div>
+
+	<div class="row">
+		<!-- 画像表示 -->
+		<div class="col-4  text-center">
+			<%= attachment_image_tag @product, :image, :fill, 300, 300, format: 'jpeg', class:"img-fluid" %>
+		</div>
+
+		<!-- 商品詳細 -->
+		<div class="col-4 text-left">
+			<span>商品名&emsp;</span><%= @product.name %><br><br>
+			<span>商品説明&emsp;</span><%= @product.introduction  %><br><br>
+			<span>ジャンル&emsp;</span><%= @product.category.category_name %><br><br>
+			<span>税抜価格&emsp;</span><%= @product.price %><br><br>
+			<span>販売ステータス&emsp;</span>
+			<% if @product.is_active == true %>
+				<%= "販売中" %><% else %><%= "売り切れ" %>
+			<% end %><br><br>
+		</div>
+	</div>
+
+	<!-- 編集ボタン -->
+	<div class="row">
+		<div class="col-10 text-right">
+			<%= link_to "編集する", edit_admins_product_path(@product), class:"btn btn-primary" %>
+		</div>
+	</div>
+</div>

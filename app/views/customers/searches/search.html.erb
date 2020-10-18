@@ -1,0 +1,27 @@
+<div class ="container">
+	<%= render 'customers/searches/box' %>
+	<div class ="row mt-5">
+		<div class="col-md-3">
+			<%= render 'customers/products/category', categories: @categories %>
+		</div>
+
+		<div class ="col-md-9">
+			<h2>検索ワード "<%= @word %>"</h2>
+			<% if @product.exists? %>
+				<h4>(全<%= @product.count %>件)</h4>
+
+				<div class="row">
+					<% @product.each do |product| %>
+						<%= render 'customers/products/table', product: product %>
+					<% end %>
+				</div>
+			<% else %>
+				<div class ="row mt-5">
+					<div class ="col-md-8 offset-md-2">
+						<h4>該当する商品はありませんでした</h4>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -1,3 +1,46 @@
 // Place all the styles related to the customers::products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.main-visual {
+	width: 100%;
+	height: 350px;
+	background-image: image-url('roma-shackiy-pye5zRDTm2A-unsplash.JPG');
+	background-size: cover;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-visual-text {
+	height: 80%;
+	width: 80%;
+	background-color:rgba(201,105,130,0.3);
+	
+}
+.main-visual-headline {
+	color: white;
+	padding-top: 20px;
+	text-align: center;
+}
+
+.main-centense {
+	color: white;
+	padding-top: 20px;
+	text-align: center;
+}
+
+.category-border{
+  width: 50%;
+  border-bottom: 3px solid #EC715F;
+}
+
+
+.reccomend-image {
+	background-color : #EC715F;
+	height: 150px;
+	width: 100%;
+}
+
+.row-10{
+	margin-left:-5px;
+	margin-right:-5px;
+}
